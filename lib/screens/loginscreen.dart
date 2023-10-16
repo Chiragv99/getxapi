@@ -14,14 +14,13 @@ import '../widget/wavy_header_widget.dart';
 
 class LoginScreen extends StatefulWidget{
 
-
-
   @override
   State<StatefulWidget> createState() => _LoginScreenState();
 
 }
 
 class _LoginScreenState extends State<LoginScreen>{
+
   final TextEditingController _mobileCntrl = TextEditingController();
   final TextEditingController _passCntrl = TextEditingController();
 
@@ -105,7 +104,8 @@ class _LoginScreenState extends State<LoginScreen>{
                           left: 8,
                         ),
                         child: GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            await _showTextInputDialog(context);
                           },
                           child:  Text(
                               "Forgot Password?", style: Theme.of(context).textTheme.headline2
@@ -159,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen>{
      }else if(_passCntrl.text.toString() == ""){
        Utils.showSnackBar(context,"Validation", "Please Enter Password!");
      }else{
-       Utils.showSnackBar(context,"Validation", "Success!");
+       Get.toNamed(RouteName.homescreen);
      }
   }
 
@@ -182,4 +182,30 @@ class _LoginScreenState extends State<LoginScreen>{
         ]
     ));
   }
+
+  Future<String?> _showTextInputDialog(BuildContext context) async {
+    final _textFieldController = TextEditingController();
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Forgot Password?'),
+            content: TextField(
+              controller: _textFieldController,
+              decoration: const InputDecoration(hintText: "Please Enter Registered Email Address"),
+            ),
+            actions: <Widget>[
+              ElevatedButton(
+                child: const Text("Cancel"),
+                onPressed: () => Navigator.pop(context),
+              ),
+              ElevatedButton(
+                child: const Text('OK'),
+                onPressed: () => Navigator.pop(context, _textFieldController.text),
+              ),
+            ],
+          );
+        });
+  }
+
 }

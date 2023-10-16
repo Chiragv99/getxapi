@@ -231,7 +231,8 @@ class _SignupScreenState extends State<SignupScreen>{
       Utils.showSnackBar(context,"Validation", "Password Doesn't match");
     }
     else{
-      Utils.showSnackBar(context,"Validation", "Success!");
+      Utils.showSnackBar(context,"Validation", "You are registered successfully!");
+      Get.toNamed(RouteName.loginscreen);
     }
   }
 }

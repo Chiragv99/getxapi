@@ -1,7 +1,6 @@
 import 'package:getxapi/models/getCommentModel.dart';
 import 'package:getxapi/models/getPhotoListModel.dart';
 import 'package:http/http.dart' as http;
-
 import '../models/postModel.dart';
 
 class ApiService {
@@ -24,5 +23,5 @@ class ApiService {
     var jsonString = response.body;
     return getCommentModelFromJson(jsonString);
   }
-
+ 
 }

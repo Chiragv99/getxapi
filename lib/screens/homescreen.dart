@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
            appBar: AppBar(
                backgroundColor: ThemeController().currentTheme().appBarColor,
                title:  Center(child: TextButton(onPressed: () {
-                 Get.toNamed(RouteName.loginscreen);
+                 Get.toNamed(RouteName.commentscreen);
                }, child: const Text("Load Post")),)
            ),
            body: SafeArea(child: Container(
